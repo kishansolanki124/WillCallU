@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">WillCallU</string>
+    <string name="add_profile">Add Profile</string>
+    <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="enter_profile_name">Enter Profile Name</string>
+    <string name="enter_start_time">Select Start Time</string>
+    <string name="select_end_time">Select End Time</string>
+    <string name="select_at_least_one_day">Select at least 1 Day</string>
+    <string name="enter_message">Enter SMS to be sent</string>
+    <string name="enter_message_to_be_sent">Enter message</string>
+    <string name="alert_cancel_changes">All changes will be discarded.</string>
+    <string name="Alert">Alert</string>
+    <string name="exit">EXIT</string>
+    <string name="cancel">cancel</string>
+    <string name="stay_here">STAY HERE</string>
+    <string name="msg_permanent_denied_profile_permission_storage">You are not able to add profile as you permanently denied permission, please enable from app settings.</string>
+    <string name="msg_allow_permission">Allow App all the required permissions to send auto SMS.</string>
+    <string name="alert_delete_profile">Are you sure want to delete this profile?</string>
+    <string name="no">no</string>
+    <string name="yes">yes</string>
+    <string name="profile_name">Profile Name</string>
+    <string name="start_time">start time</string>
+    <string name="end_time">end time</string>
+    <string name="dash">-</string>
+    <string name="save">save</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="delete">delete</string>
+    <string name="settings">Settings</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="feedback">Feedback</string>
+    <string name="no_apps_found_to_send_mail">No application available to send email</string>
+    <string name="incoming_ring_time">Incoming call ring duration</string>
+    <string name="que_mark">\?</string>
+    <string name="intro_call_seconds">This is incoming call ring duration. If a missed call is greater than this duration (in seconds) then SMS will be sent automatically. Generally, the ring time can be set in increments of 15 seconds to a maximum of 30 seconds.</string>
+    <string name="sms_sent_via">Auto SMS sent via WillCallU App</string>
+    <string name="share_content">Missing calls often of your loved-ones?\nLet them know on missing their call via sending an SMS prewritten by you automatically on a missed call. Know more %s</string>
+    <string name="version">version %s</string>
+    <string name="share_app">Share WillCallU</string>
+    <string name="what_is_will_call_u">What is WillCallU</string>
+    <string name="send_sms_to_only_contacts">Send SMS to Contacts only</string>
+    <string name="about_will_call_u">Have you ever been in a situation when someone called you and you were busy that you missed their call, but <b>at the same time</b> you want to let them know that \"I am busy somewhere.\"\n\n\nHere <b>WillCallU</b> will help you. How?\n\n\nIf someone calls you and you missed their call, then <b>WillCallU</b> will
+<b>send prewritten SMS</b> like \"I am in the office and my phone is on silent mode\" or \"I am in a gym, will call you once I see
+your miss call\" automatically to the caller.\n\n\nYou can set predefined profiles using a combination of <b>days and hours</b>. Based on that an <b>SMS will fire automatically</b> on a missed call.</string>
+    <string name="empty_list">Once you create a profile, you\'ll see it listed here. Click on a \"+\" sign to create Profile.</string>
+    <string name="xiaomi">xiaomi:</string>
+    <string name="oppo">oppo:</string>
+    <string name="xiaomi_desc">1. Open Settings.\n2. Open Permissions.\n3. Open Auto Start.\n4. Scroll to WillCallU App and Enable it.</string>
+    <string name="oppo_desc">1. Open Security Center.\n2. Open Startup Manager.\n3. Scroll to WillCallU App and Enable it.</string>
+    <string name="not_found_solution">Not found the solution?</string>
+    <string name="privacyPolicyURL">https://sites.google.com/view/willcallu/privacy-policy</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="app_not_working_">App Not Working?</string>
+</resources>

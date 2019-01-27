@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFF</color>
+    <color name="gray">#DDD</color>
+    <color name="dark_gray">#777</color>
+    <color name="red">#FF0000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="textColorPrimary">#0C1219</color>
+    <color name="colorControlHighlight">#326EE0</color>
+    <color name="floating_blue">#28ACE6</color>
+    <color name="gray_eaeaea">#EAEAEA</color>
+    <color name="color_e6e6e6">#e6e6e6</color>
+    <!--<color name="colorPrimary">#008577</color>-->
+    <!--<color name="colorPrimaryDark">#00574B</color>-->
+    <!--<color name="colorAccent">#D81B60</color>-->
+</resources>

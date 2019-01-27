@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.AppCompatCheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cb_text"
+    android:layout_width="@dimen/_35sdp"
+    android:layout_height="@dimen/_35sdp"
+    android:layout_margin="@dimen/_3sdp"
+    android:background="@drawable/weekdays_bg"
+    android:button="@null"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    android:gravity="center"
+    android:textAllCaps="true"
+    android:textColor="@color/white"
+    android:textSize="@dimen/_14ssp"
+    tools:text="S" />
