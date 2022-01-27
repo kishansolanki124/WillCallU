@@ -1,6 +1,5 @@
 package app.com.willcallu;
 
-import app.com.willcallu.R;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 
@@ -18,7 +17,5 @@ public class PermissionDialog extends AlertDialog {
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
-
     }
 }

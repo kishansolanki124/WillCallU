@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import app.com.willcallu.room_db.SelectorModel
 import kotlinx.android.synthetic.main.week_days_home_list_item.view.*
 
-
-class WeekDaysAdapterForHomeList(private val upcomingReqestsArraylist: ArrayList<SelectorModel>) :
+class WeekDaysAdapterForHomeList(private val upcomingRequestsArraylist: ArrayList<SelectorModel>) :
         RecyclerView.Adapter<WeekDaysAdapterForHomeList.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -17,14 +16,14 @@ class WeekDaysAdapterForHomeList(private val upcomingReqestsArraylist: ArrayList
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindForecast(upcomingReqestsArraylist[position])
+        holder.bindForecast(upcomingRequestsArraylist[position])
     }
 
     override fun getItemViewType(position: Int): Int {
         return position
     }
 
-    override fun getItemCount() = upcomingReqestsArraylist.size
+    override fun getItemCount() = upcomingRequestsArraylist.size
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindForecast(upcomingRequest: SelectorModel) {

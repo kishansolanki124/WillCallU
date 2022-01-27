@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import app.com.willcallu.room_db.SelectorModel
 import kotlinx.android.synthetic.main.week_days_profile_details_item.view.*
 
-
-class WeekDaysAdapter(private val upcomingReqestsArraylist: ArrayList<SelectorModel>,
+class WeekDaysAdapter(private val upcomingRequestsArraylist: ArrayList<SelectorModel>,
                       imageSmallSize: Boolean,
                       private val itemClick: (SelectorModel, Int) -> Unit) :
         RecyclerView.Adapter<WeekDaysAdapter.ViewHolder>() {
@@ -22,14 +21,14 @@ class WeekDaysAdapter(private val upcomingReqestsArraylist: ArrayList<SelectorMo
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindForecast(imageSmall, position, upcomingReqestsArraylist[position])
+        holder.bindForecast(imageSmall, position, upcomingRequestsArraylist[position])
     }
 
     override fun getItemViewType(position: Int): Int {
         return position
     }
 
-    override fun getItemCount() = upcomingReqestsArraylist.size
+    override fun getItemCount() = upcomingRequestsArraylist.size
 
     class ViewHolder(view: View, private val itemClick: (SelectorModel, Int) -> Unit) : RecyclerView.ViewHolder(view) {
         fun bindForecast(imageSmall: Boolean, position: Int, upcomingRequest: SelectorModel) {

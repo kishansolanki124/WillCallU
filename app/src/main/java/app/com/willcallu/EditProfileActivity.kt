@@ -49,9 +49,11 @@ class EditProfileActivity : AppCompatActivity(), TextWatcher {
 
     private var rightNow = Calendar.getInstance()
 
-    private var startHour = rightNow.get(Calendar.HOUR_OF_DAY) // return the hour in 24 hrs format (ranging from 0-23)
+    private var startHour =
+        rightNow.get(Calendar.HOUR_OF_DAY) // return the hour in 24 hrs format (ranging from 0-23)
     private var startMin = rightNow.get(Calendar.MINUTE)
-    private var endHour = rightNow.get(Calendar.HOUR_OF_DAY) // return the hour in 24 hrs format (ranging from 0-23)
+    private var endHour =
+        rightNow.get(Calendar.HOUR_OF_DAY) // return the hour in 24 hrs format (ranging from 0-23)
     private var endMin = rightNow.get(Calendar.MINUTE)
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,7 +127,7 @@ class EditProfileActivity : AppCompatActivity(), TextWatcher {
 
         et_sart_time.setOnClickListener {
 
-            val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view: TimePicker?, hourOfDay: Int, minute: Int ->
+            val dialog = TimePickerDialog(this, { view: TimePicker?, hourOfDay: Int, minute: Int ->
                 getTime(hourOfDay, minute, et_sart_time)
                 startHour = hourOfDay
                 startMin = minute
@@ -135,7 +137,7 @@ class EditProfileActivity : AppCompatActivity(), TextWatcher {
 
         et_end_time.setOnClickListener {
 
-            val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view: TimePicker?, hourOfDay: Int, minute: Int ->
+            val dialog = TimePickerDialog(this, { view: TimePicker?, hourOfDay: Int, minute: Int ->
                 getTime(hourOfDay, minute, et_end_time)
                 endHour = hourOfDay
                 endMin = minute
@@ -148,7 +150,8 @@ class EditProfileActivity : AppCompatActivity(), TextWatcher {
 
         rv_demo.adapter = adapter
         (rv_demo.itemAnimator as SimpleItemAnimator)
-                .supportsChangeAnimations = false//disable blink/spark when item refreshed by notifyitemchanged from ondatachange
+            .supportsChangeAnimations =
+            false//disable blink/spark when item refreshed by notifyitemchanged from ondatachange
 
         rv_demo.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
@@ -206,11 +209,19 @@ class EditProfileActivity : AppCompatActivity(), TextWatcher {
     private fun initViews() {
         et_profile_name.setText(profileModel.mName)
 
-        val startTime = changeTimeFormat(profileModel.mStartTime, AppConstants.FORMAT_HH_mm, AppConstants.FORMAT_hh_mm_a)
-        val endTime = changeTimeFormat(profileModel.mEndTime, AppConstants.FORMAT_HH_mm, AppConstants.FORMAT_hh_mm_a)
+        val startTime = changeTimeFormat(
+            profileModel.mStartTime,
+            AppConstants.FORMAT_HH_mm,
+            AppConstants.FORMAT_hh_mm_a
+        )
+        val endTime = changeTimeFormat(
+            profileModel.mEndTime,
+            AppConstants.FORMAT_HH_mm,
+            AppConstants.FORMAT_hh_mm_a
+        )
 
-        et_sart_time.setText(startTime)
-        et_end_time.setText(endTime)
+        et_sart_time.text = startTime
+        et_end_time.text = endTime
 
         et_message.setText(profileModel.mMessage)
 
@@ -294,8 +305,10 @@ class EditProfileActivity : AppCompatActivity(), TextWatcher {
 
     private fun getTime(hourOfDay: Int, min: Int, tv: TextView) {
         val isPM = hourOfDay >= 12
-        tv.text = String.format("%02d:%02d %s", if (hourOfDay === 12 || hourOfDay === 0) 12 else hourOfDay % 12, min,
-                if (isPM) "PM" else "AM")
+        tv.text = String.format(
+            "%02d:%02d %s", if (hourOfDay == 12 || hourOfDay == 0) 12 else hourOfDay % 12, min,
+            if (isPM) "PM" else "AM"
+        )
     }
 
     private fun saveProfile() {
@@ -305,8 +318,16 @@ class EditProfileActivity : AppCompatActivity(), TextWatcher {
             sbWeekDays.append(selectedWeekDays[i]).append(",")
         }
 
-        val startTime = changeTimeFormat(et_sart_time.text.toString().trim(), AppConstants.FORMAT_hh_mm_a, AppConstants.FORMAT_HH_mm)
-        val endTime = changeTimeFormat(et_end_time.text.toString().trim(), AppConstants.FORMAT_hh_mm_a, AppConstants.FORMAT_HH_mm)
+        val startTime = changeTimeFormat(
+            et_sart_time.text.toString().trim(),
+            AppConstants.FORMAT_hh_mm_a,
+            AppConstants.FORMAT_HH_mm
+        )
+        val endTime = changeTimeFormat(
+            et_end_time.text.toString().trim(),
+            AppConstants.FORMAT_hh_mm_a,
+            AppConstants.FORMAT_HH_mm
+        )
         if (startTime.isEmpty()) {
             showSnackBar("Error", this)
             return
@@ -326,7 +347,8 @@ class EditProfileActivity : AppCompatActivity(), TextWatcher {
 
     private fun showSnackBar(message: String, activity: Activity?) {
         if (activity != null) {
-            val view = (activity.findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
+            val view =
+                (activity.findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
             val mySnackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG)
 
             //setting text color for snackbar
@@ -366,13 +388,13 @@ class EditProfileActivity : AppCompatActivity(), TextWatcher {
     private fun editExitAlert() {
         val builder = AlertDialog.Builder(this)
         builder.setMessage(getString(R.string.alert_cancel_changes))
-                .setTitle(getString(R.string.Alert))
-                .setCancelable(false)
-                .setPositiveButton(getString(R.string.exit)) { dialog, id ->
-                    dialog.dismiss()
-                    finish()
-                }
-                .setNegativeButton(getString(R.string.stay_here)) { dialog, id -> dialog.dismiss() }
+            .setTitle(getString(R.string.Alert))
+            .setCancelable(false)
+            .setPositiveButton(getString(R.string.exit)) { dialog, id ->
+                dialog.dismiss()
+                finish()
+            }
+            .setNegativeButton(getString(R.string.stay_here)) { dialog, id -> dialog.dismiss() }
         val alert = builder.create()
         alert.show()
     }
@@ -381,14 +403,14 @@ class EditProfileActivity : AppCompatActivity(), TextWatcher {
     private fun deleteProfileAlert() {
         val builder = AlertDialog.Builder(this)
         builder.setMessage(getString(R.string.alert_delete_profile))
-                .setTitle(getString(R.string.Alert))
-                .setCancelable(false)
-                .setPositiveButton(getString(R.string.yes)) { dialog, id ->
-                    dialog.dismiss()
-                    mProfileViewModel!!.delete(profileModel)
-                    finish()
-                }
-                .setNegativeButton(getString(R.string.cancel)) { dialog, id -> dialog.dismiss() }
+            .setTitle(getString(R.string.Alert))
+            .setCancelable(false)
+            .setPositiveButton(getString(R.string.yes)) { dialog, id ->
+                dialog.dismiss()
+                mProfileViewModel!!.delete(profileModel)
+                finish()
+            }
+            .setNegativeButton(getString(R.string.cancel)) { dialog, id -> dialog.dismiss() }
         val alert = builder.create()
         alert.show()
     }
@@ -419,5 +441,4 @@ class EditProfileActivity : AppCompatActivity(), TextWatcher {
         }
         return true
     }
-
 }

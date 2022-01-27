@@ -71,7 +71,8 @@ class SettingsActivity : AppCompatActivity() {
 
         swContacts.setOnCheckedChangeListener { _, isChecked ->
             run {
-                val sharedPreferences = getSharedPreferences(AppConstants.PREF_APP, Context.MODE_PRIVATE)
+                val sharedPreferences =
+                    getSharedPreferences(AppConstants.PREF_APP, Context.MODE_PRIVATE)
                 WillCallUApplication.setOnlyContactsBoolEnable(sharedPreferences, isChecked)
             }
         }
@@ -135,9 +136,19 @@ class SettingsActivity : AppCompatActivity() {
     private fun rateApp() {
         val appPackageName = packageName
         try {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackageName")))
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=$appPackageName")
+                )
+            )
         } catch (anfe: android.content.ActivityNotFoundException) {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")))
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")
+                )
+            )
         }
     }
 
@@ -145,8 +156,13 @@ class SettingsActivity : AppCompatActivity() {
         val appPackageName = packageName
         val sendIntent = Intent()
         sendIntent.action = Intent.ACTION_SEND
-        sendIntent.putExtra(Intent.EXTRA_TEXT,
-                getString(R.string.share_content, "https://play.google.com/store/apps/details?id=$appPackageName"))
+        sendIntent.putExtra(
+            Intent.EXTRA_TEXT,
+            getString(
+                R.string.share_content,
+                "https://play.google.com/store/apps/details?id=$appPackageName"
+            )
+        )
         sendIntent.type = "text/plain"
         startActivity(sendIntent)
     }
@@ -176,13 +192,16 @@ class SettingsActivity : AppCompatActivity() {
         intent.data = Uri.parse("mailto:") // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, Array(1) { AppConstants.EMAIL_OF_DEVELOPER })
         intent.putExtra(Intent.EXTRA_SUBJECT, "subject")
-        if (getDeviceName() != null && getDeviceName().isNotEmpty()) {
+        if (!getDeviceName().isNullOrEmpty()) {
             val getDeviceOS = getDeviceOS()
-            if (getDeviceOS != null && getDeviceOS.isNotEmpty())
-                intent.putExtra(Intent.EXTRA_TEXT, "\n\n\nSent from " + getDeviceName()
-                        + " - " + getDeviceOS)
-            else
+            if (!getDeviceOS.isNullOrEmpty()) {
+                intent.putExtra(
+                    Intent.EXTRA_TEXT, "\n\n\nSent from " + getDeviceName()
+                            + " - " + getDeviceOS
+                )
+            } else {
                 intent.putExtra(Intent.EXTRA_TEXT, "\n\n\nSent via " + getDeviceName())
+            }
         }
 
 
@@ -195,7 +214,8 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun showSnackBar(message: String, activity: Activity?) {
         if (activity != null) {
-            val view = (activity.findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
+            val view =
+                (activity.findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
             val mySnackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG)
 
             //setting text color for snackbar
@@ -209,7 +229,7 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    fun getDeviceName(): String {
+    private fun getDeviceName(): String {
         val manufacturer = Build.MANUFACTURER
         val model = Build.MODEL
         return if (model.startsWith(manufacturer)) {
@@ -219,7 +239,7 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    fun getDeviceOS(): String {
+    private fun getDeviceOS(): String {
         val builder = StringBuilder()
         builder.append(Build.VERSION.RELEASE)
 
@@ -247,7 +267,7 @@ class SettingsActivity : AppCompatActivity() {
 
 
     private fun capitalize(s: String?): String {
-        if (s == null || s.length == 0) {
+        if (s == null || s.isEmpty()) {
             return ""
         }
         val first = s[0]

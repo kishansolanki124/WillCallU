@@ -43,9 +43,9 @@ class MainActivity : AppCompatActivity() {
         iconArrayList.add(IconModel(R.drawable.meeting, false))
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-        val rl_emptylist = findViewById<RelativeLayout>(R.id.rl_emptylist)
+        val rlEmptylist = findViewById<RelativeLayout>(R.id.rl_emptylist)
 
-        val adapter = ProfileListAdapter(iconArrayList, this) { profile, position ->
+        val adapter = ProfileListAdapter(iconArrayList, this) { profile, _ ->
 
             Log.d("profile", profile.mStartTime)
 
@@ -98,10 +98,10 @@ class MainActivity : AppCompatActivity() {
 
         mProfileViewModel!!.getmAllProfiles().observe(this, Observer { profiles ->
             // Update the cached copy of the profiles in the adapter.
-            if (profiles != null && !profiles.isEmpty()) {
-                rl_emptylist.visibility = View.GONE
+            if (profiles != null && profiles.isNotEmpty()) {
+                rlEmptylist.visibility = View.GONE
             } else {
-                rl_emptylist.visibility = View.VISIBLE
+                rlEmptylist.visibility = View.VISIBLE
             }
             adapter.setProfiles(profiles)
         })
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         // Handle item selection
         if (item != null) {
-            when (item.getItemId()) {
+            when (item.itemId) {
                 R.id.settings -> {
                     openSettings()
                     return true
@@ -193,56 +193,56 @@ class MainActivity : AppCompatActivity() {
             var startTime = SimpleDateFormat(AppConstants.FORMAT_HH_mm, Locale.ENGLISH)
                     .parse(initialTime)
             val startCalendar = Calendar.getInstance()
-            startCalendar.setTime(startTime)
+            startCalendar.time = startTime
 
             // Current Time
             var currentTime = SimpleDateFormat(AppConstants.FORMAT_HH_mm, Locale.ENGLISH)
                     .parse(currentTimeStr)
             val currentCalendar = Calendar.getInstance()
-            currentCalendar.setTime(currentTime)
+            currentCalendar.time = currentTime
 
             // End Time
             var endTime = SimpleDateFormat(AppConstants.FORMAT_HH_mm, Locale.ENGLISH)
                     .parse(finalTime)
             val endCalendar = Calendar.getInstance()
-            endCalendar.setTime(endTime)
+            endCalendar.time = endTime
 
             //
             if (currentTime.compareTo(endTime) < 0) {
 
                 currentCalendar.add(Calendar.DATE, 1)
-                currentTime = currentCalendar.getTime()
+                currentTime = currentCalendar.time
 
             }
 
             if (startTime.compareTo(endTime) < 0) {
 
                 startCalendar.add(Calendar.DATE, 1)
-                startTime = startCalendar.getTime()
+                startTime = startCalendar.time
 
             }
             //
             if (currentTime.before(startTime)) {
-                System.out.println(" Time is Lesser ")
+                println(" Time is Lesser ")
                 valid = false
             } else {
 
                 if (currentTime.after(endTime)) {
                     endCalendar.add(Calendar.DATE, 1)
-                    endTime = endCalendar.getTime()
+                    endTime = endCalendar.time
 
                 }
 
-                System.out.println("Comparing , Start Time /n " + startTime)
-                System.out.println("Comparing , End Time /n " + endTime)
-                System.out.println("Comparing , Current Time /n " + currentTime)
+                println("Comparing , Start Time /n " + startTime)
+                println("Comparing , End Time /n " + endTime)
+                println("Comparing , Current Time /n " + currentTime)
 
                 if (currentTime.before(endTime)) {
-                    System.out.println("RESULT, Time lies b/w")
+                    println("RESULT, Time lies b/w")
                     valid = true
                 } else {
                     valid = false
-                    System.out.println("RESULT, Time does not lies b/w")
+                    println("RESULT, Time does not lies b/w")
                 }
             }
             return valid
@@ -268,7 +268,7 @@ class MainActivity : AppCompatActivity() {
                 if (endMinute - startMinute >= 0) {
                     totalminutes = endMinute - startMinute
                 } else {
-                    totalhours = totalhours - 1
+                    totalhours -= 1
                     totalminutes = (endMinute + 60) - startMinute
                 }
             } else {
@@ -277,7 +277,7 @@ class MainActivity : AppCompatActivity() {
                 if (endMinute - startMinute >= 0) {
                     totalminutes = endMinute - startMinute
                 } else {
-                    totalhours = totalhours - 1
+                    totalhours -= 1
                     totalminutes = (endMinute + 60) - startMinute
                 }
             }
@@ -286,7 +286,7 @@ class MainActivity : AppCompatActivity() {
             if (endMinute - startMinute >= 0) {
                 totalminutes = endMinute - startMinute
             } else {
-                totalhours = totalhours - 1
+                totalhours -= 1
                 totalminutes = (endMinute + 60) - startMinute
             }
         } else {
@@ -294,7 +294,7 @@ class MainActivity : AppCompatActivity() {
             if (endMinute - startMinute >= 0) {
                 totalminutes = endMinute - startMinute
             } else {
-                totalhours = totalhours - 1
+                totalhours -= 1
                 totalminutes = (endMinute + 60) - startMinute
             }
         }
@@ -303,8 +303,7 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("difference", "difference between " + startTime + " and " + endTime + " is " + printString)
 
-        val temp: Int
-        temp = 60 * totalminutes + 3600 * totalhours
+        val temp: Int = 60 * totalminutes + 3600 * totalhours
 
         Log.d("seconds", temp.toString())
         secondsArrayList.add(temp.toDouble())

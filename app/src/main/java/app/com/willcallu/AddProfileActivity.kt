@@ -139,7 +139,7 @@ class AddProfileActivity : AppCompatActivity(), TextWatcher {
 
         et_sart_time.setOnClickListener {
 
-            val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view: TimePicker?, hourOfDay: Int, minute: Int ->
+            val dialog = TimePickerDialog(this, { view: TimePicker?, hourOfDay: Int, minute: Int ->
                 getTime(hourOfDay, minute, et_sart_time)
                 startHour = hourOfDay
                 startMin = minute
@@ -149,7 +149,7 @@ class AddProfileActivity : AppCompatActivity(), TextWatcher {
 
         et_end_time.setOnClickListener {
 
-            val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view: TimePicker?, hourOfDay: Int, minute: Int ->
+            val dialog = TimePickerDialog(this, { view: TimePicker?, hourOfDay: Int, minute: Int ->
                 getTime(hourOfDay, minute, et_end_time)
                 endHour = hourOfDay
                 endMin = minute
@@ -266,7 +266,7 @@ class AddProfileActivity : AppCompatActivity(), TextWatcher {
 
     private fun getTime(hourOfDay: Int, min: Int, tv: TextView) {
         val isPM = hourOfDay >= 12
-        tv.text = String.format("%02d:%02d %s", if (hourOfDay === 12 || hourOfDay === 0) 12 else hourOfDay % 12, min,
+        tv.text = String.format("%02d:%02d %s", if (hourOfDay == 12 || hourOfDay == 0) 12 else hourOfDay % 12, min,
                 if (isPM) "PM" else "AM")
     }
 
@@ -513,5 +513,4 @@ class AddProfileActivity : AppCompatActivity(), TextWatcher {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
-
 }

@@ -46,15 +46,17 @@ class AppNotWorkingActivity : AppCompatActivity() {
         intent.data = Uri.parse("mailto:") // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, Array(1) { AppConstants.EMAIL_OF_DEVELOPER })
         intent.putExtra(Intent.EXTRA_SUBJECT, "App not working")
-        if (getDeviceName() != null && getDeviceName().isNotEmpty()) {
+        if (!getDeviceName().isNullOrEmpty()) {
             val getDeviceOS = getDeviceOS()
-            if (getDeviceOS != null && getDeviceOS.isNotEmpty())
-                intent.putExtra(Intent.EXTRA_TEXT, "\n\n\nSent from " + getDeviceName()
-                        + " - " + getDeviceOS)
-            else
+            if (!getDeviceOS.isNullOrEmpty()) {
+                intent.putExtra(
+                    Intent.EXTRA_TEXT, "\n\n\nSent from " + getDeviceName()
+                            + " - " + getDeviceOS
+                )
+            } else {
                 intent.putExtra(Intent.EXTRA_TEXT, "\n\n\nSent via " + getDeviceName())
+            }
         }
-
 
         if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
@@ -65,7 +67,8 @@ class AppNotWorkingActivity : AppCompatActivity() {
 
     private fun showSnackBar(message: String, activity: Activity?) {
         if (activity != null) {
-            val view = (activity.findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
+            val view =
+                (activity.findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
             val mySnackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG)
 
             //setting text color for snackbar
@@ -90,7 +93,7 @@ class AppNotWorkingActivity : AppCompatActivity() {
     }
 
     private fun capitalize(s: String?): String {
-        if (s == null || s.length == 0) {
+        if (s == null || s.isEmpty()) {
             return ""
         }
         val first = s[0]

@@ -19,14 +19,13 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-class ProfileListAdapter internal constructor(iconModels: java.util.ArrayList<IconModel>,
+class ProfileListAdapter internal constructor(iconModels: ArrayList<IconModel>,
                                               context: Context,
                                               private val itemClick: (Profile, Int) -> Unit) :
         RecyclerView.Adapter<ProfileListAdapter.WordViewHolder>() {
 
     private val mContext: Context = context
-    private val iconArrayList: java.util.ArrayList<IconModel> = iconModels
+    private val iconArrayList: ArrayList<IconModel> = iconModels
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
     private var mWords: List<Profile>? = null // Cached copy of words
 

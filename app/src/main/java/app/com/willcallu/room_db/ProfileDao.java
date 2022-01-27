@@ -21,9 +21,6 @@ public interface ProfileDao {
     @Delete
     void delete(Profile profile);
 
-//    @Query("DELETE FROM profile_table")
-//    void deleteAll();
-
     @Query("SELECT * from profile_table WHERE week_days LIKE  '%' || :currentDay || '%' ORDER BY id DESC")
     List<Profile> extractProfileByDay(String currentDay);
 
